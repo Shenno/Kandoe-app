@@ -5,33 +5,24 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 
 import be.kdg.teamf.kandoe_app.fragments.HomeFragment;
 import be.kdg.teamf.kandoe_app.fragments.LoginFragment;
 import be.kdg.teamf.kandoe_app.fragments.RegisterFragment;
 import be.kdg.teamf.kandoe_app.fragments.SessionFragment;
-import be.kdg.teamf.kandoe_app.resource.UserResourceRegister;
-import be.kdg.teamf.kandoe_app.service.KandoeService;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
-import static be.kdg.teamf.kandoe_app.application.KandoeApplication.getKandoeService;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Callback<String> {
