@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity
             prefs.edit().clear().commit();
             fragmentToNavigate = new HomeFragment();
         } else if (id == R.id.nav_play) {
-            Toast.makeText(this, "Ik wil spelen", Toast.LENGTH_LONG).show();
             fragmentToNavigate = new SessionFragment();
         } else if (id == R.id.nav_register) {
             fragmentToNavigate = new RegisterFragment();
@@ -126,6 +125,12 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void switchContent(Fragment fragment) {
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
     }
 
     @Override

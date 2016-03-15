@@ -30,7 +30,7 @@ public class KandoeApplication extends Application {
 
     private KandoeService createDemoService() {
         final Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss") // Om DateTimes van C# te converteren
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss") // Om DateTimes van te converteren
                 .create();
 
         return new RestAdapter.Builder()

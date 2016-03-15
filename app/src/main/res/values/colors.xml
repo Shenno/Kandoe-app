@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#706f5d</color>
     <color name="colorKandoe">#48c4ba</color>
+    <color name="background_holo_light">#fff3f3f3</color>
+    <color name="topcard">#caef26</color>
 </resources>

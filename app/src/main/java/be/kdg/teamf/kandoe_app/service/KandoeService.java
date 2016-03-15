@@ -2,6 +2,7 @@ package be.kdg.teamf.kandoe_app.service;
 
 
 
+import be.kdg.teamf.kandoe_app.resource.SessionResource;
 import be.kdg.teamf.kandoe_app.resource.UserResource;
 import be.kdg.teamf.kandoe_app.resource.UserResourcePost;
 import be.kdg.teamf.kandoe_app.resource.UserResourceRegister;
@@ -25,6 +26,9 @@ public interface KandoeService {
 
     @POST("/api/login")
     void login(@Body UserResourcePost userResourcePost, Callback<String> token);
+
+    @GET("/api/sessions/1")
+    void getSession(@Header("Authorization") String token, Callback<SessionResource> sr);
 
 /*    @POST("/api/Account/Register")
     void registerAccount(@Body Account account, Callback<Account> created);

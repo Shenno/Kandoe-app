@@ -66,33 +66,40 @@
     </LinearLayout>
 
     <!-- Top View,  Row itemView of RecyclerView -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/rowitem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorKandoe"
         android:elevation="5dp"
         android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="Name"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:id="@+id/cardImage"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginRight="5dp" />
 
         <TextView
-            android:id="@+id/tvEmailId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvName"
-            android:layout_margin="5dp"
-            android:text="Email Id"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-    </LinearLayout>
+            android:text="CardName"
+            android:id="@+id/cardName"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/cardImage"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score"
+            android:id="@+id/score"
+            android:layout_below="@+id/cardName"
+            android:layout_toEndOf="@+id/cardImage"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </RelativeLayout>
 
 </com.daimajia.swipe.SwipeLayout>
