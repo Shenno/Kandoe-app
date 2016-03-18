@@ -8,8 +8,12 @@
     swipe:rightEdgeSwipeOffset="0dp">
 
     <!--Bottom View For Right to Left-->
-
     <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+    </LinearLayout>
+
+<!--    <LinearLayout
         android:id="@+id/bottom_wrapper"
         android:layout_width="240dp"
         android:layout_height="match_parent"
@@ -44,7 +48,7 @@
             android:gravity="center"
             android:text="Delete"
             android:textColor="#fff" />
-    </LinearLayout>
+    </LinearLayout> -->
 
 
     <!-- Another Bottom View For Left to Right -->
@@ -84,22 +88,27 @@
             android:layout_marginRight="5dp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CardName"
             android:id="@+id/cardName"
             android:layout_alignParentTop="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_alignBottom="@+id/cardImage"
             android:layout_toEndOf="@+id/cardImage"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_toStartOf="@+id/colorRing" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Score"
-            android:id="@+id/score"
-            android:layout_below="@+id/cardName"
-            android:layout_toEndOf="@+id/cardImage"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:id="@+id/colorRing"
+            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:text=""
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:background="@drawable/shape_circle"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 </com.daimajia.swipe.SwipeLayout>

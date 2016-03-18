@@ -1,5 +1,6 @@
 package be.kdg.teamf.kandoe_app;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
        /* Test FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +133,10 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
+    }
+
+    public android.support.v7.app.ActionBar getSupActionBar() {
+        return getSupportActionBar();
     }
 
     @Override

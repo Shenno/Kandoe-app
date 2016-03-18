@@ -2,6 +2,7 @@ package be.kdg.teamf.kandoe_app.service;
 
 
 
+import be.kdg.teamf.kandoe_app.resource.CardSessionResource;
 import be.kdg.teamf.kandoe_app.resource.SessionResource;
 import be.kdg.teamf.kandoe_app.resource.UserResource;
 import be.kdg.teamf.kandoe_app.resource.UserResourcePost;
@@ -11,6 +12,7 @@ import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.POST;
+import retrofit.http.Path;
 
 
 /**
@@ -30,10 +32,10 @@ public interface KandoeService {
     @GET("/api/sessions/1")
     void getSession(@Header("Authorization") String token, Callback<SessionResource> sr);
 
-/*    @POST("/api/Account/Register")
-    void registerAccount(@Body Account account, Callback<Account> created);
-
-    @GET("/api/Account/getInfo/{email}/")
+    @POST("/api/sessions/{sessionId}")
+    void updateSession(@Header("Authorization") String token, @Path("sessionId") int sessionId,
+                       @Body CardSessionResource cardSessionResource, Callback<SessionResource> sr);
+/*    @GET("/api/Account/getInfo/{email}/")
     void getUserInfo(@Path("email") String email, Callback<DtoUserInfo> callback);
 
     @FormUrlEncoded

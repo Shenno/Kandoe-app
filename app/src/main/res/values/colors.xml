@@ -5,5 +5,10 @@
     <color name="colorAccent">#706f5d</color>
     <color name="colorKandoe">#48c4ba</color>
     <color name="background_holo_light">#fff3f3f3</color>
-    <color name="topcard">#caef26</color>
+    <color name="cardDistWinner">#5fdad0</color>
+    <color name="cardDist1">#b2ff59</color>
+    <color name="cardDist2">#ffee58</color>
+    <color name="cardDist3">#ffab40</color>
+    <color name="cardDist4">#ff5252</color>
+    <color name="divider">#9e9e9e</color>
 </resources>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import be.kdg.teamf.kandoe_app.R;
 import be.kdg.teamf.kandoe_app.resource.UserResource;
@@ -54,9 +55,17 @@ public class HomeFragment extends Fragment implements Callback<UserResource> {
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_register).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
             navigationView.getMenu().findItem(R.id.nav_play).setEnabled(true);
             getKandoeService().getUserinfo(prefs.getString("token", null), this);
         }
+    }
+
+    private void updateSharedPref(int id) {
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("Logindetails", Context.MODE_PRIVATE).edit();
+        editor.putInt("id", id);
+        editor.apply();
+        Toast.makeText(getActivity(), Integer.toString(id), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -65,6 +74,7 @@ public class HomeFragment extends Fragment implements Callback<UserResource> {
             tvEmail.setText(userResource.getUsername());
             String fullName = userResource.getFirstName() + " " + userResource.getLastName();
             tvName.setText(fullName);
+            updateSharedPref(userResource.getId());
         }
     }
 
