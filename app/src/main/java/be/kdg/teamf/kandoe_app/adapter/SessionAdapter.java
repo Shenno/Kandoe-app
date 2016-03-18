@@ -3,13 +3,8 @@ package be.kdg.teamf.kandoe_app.adapter;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,21 +14,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import be.kdg.teamf.kandoe_app.MainActivity;
 import be.kdg.teamf.kandoe_app.R;
-import be.kdg.teamf.kandoe_app.fragments.HomeFragment;
 import be.kdg.teamf.kandoe_app.fragments.SessionPostFragment;
 import be.kdg.teamf.kandoe_app.resource.CardSessionResource;
 import be.kdg.teamf.kandoe_app.resource.SessionResource;
