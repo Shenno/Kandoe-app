@@ -12,7 +12,7 @@
         android:id="@+id/editTextEmail"
         android:layout_marginTop="40dp"
         android:hint="E-mailadres"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/textViewSessionName"
         android:layout_alignStart="@+id/editTextPwd" />
 
     <EditText
@@ -33,7 +33,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:id="@+id/textView" />
+        android:id="@+id/textViewSessionName" />
 
     <TextView
         android:layout_width="wrap_content"

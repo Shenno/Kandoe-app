@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,12 +22,13 @@ import be.kdg.teamf.kandoe_app.fragments.HomeFragment;
 import be.kdg.teamf.kandoe_app.fragments.LoginFragment;
 import be.kdg.teamf.kandoe_app.fragments.RegisterFragment;
 import be.kdg.teamf.kandoe_app.fragments.SessionFragment;
+import be.kdg.teamf.kandoe_app.fragments.SessionsFragment;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Callback<String> {
+        implements NavigationView.OnNavigationItemSelectedListener {
     public Menu menu;
 
     @Override
@@ -36,16 +38,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-       /* Test FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -54,10 +46,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-     /*   FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, new HomeFragment()).addToBackStack(null).commit();*/
-        //TODO // FIXME: 10/03/2016 Gives nullpointer
     }
 
     @Override
@@ -74,7 +62,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        //todo Changed it to this place cuz it's not okay in onCreate()
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_container, new HomeFragment()).addToBackStack(null).commit();
@@ -90,7 +77,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "settings", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Under construction", Toast.LENGTH_LONG).show();
             return true;
         }
 
@@ -110,7 +97,7 @@ public class MainActivity extends AppCompatActivity
             prefs.edit().clear().commit();
             fragmentToNavigate = new HomeFragment();
         } else if (id == R.id.nav_play) {
-            fragmentToNavigate = new SessionFragment();
+            fragmentToNavigate = new SessionsFragment();
         } else if (id == R.id.nav_register) {
             fragmentToNavigate = new RegisterFragment();
         } else if (id == R.id.nav_home) {
@@ -137,15 +124,5 @@ public class MainActivity extends AppCompatActivity
 
     public android.support.v7.app.ActionBar getSupActionBar() {
         return getSupportActionBar();
-    }
-
-    @Override
-    public void success(String s, Response response) {
-        System.out.println("Heheheh");
-    }
-
-    @Override
-    public void failure(RetrofitError error) {
-        System.out.println("Rofl");
     }
 }

@@ -51,7 +51,10 @@ public class SessionPostFragment extends Fragment implements Callback<SessionRes
     @Override
     public void success(SessionResource sessionResource, Response response) {
         Snackbar.make(getView(), "Zet gelukt!", Snackbar.LENGTH_LONG).show();
+        Bundle args = new Bundle();
+        args.putInt("sessionId", sessionResource.getId());
         Fragment fragment = new SessionFragment();
+        fragment.setArguments(args);
         FragmentManager fragMan = getFragmentManager();
         FragmentTransaction fragTran = fragMan.beginTransaction();
         fragTran.replace(R.id.frame_container, fragment);

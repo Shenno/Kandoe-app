@@ -11,4 +11,6 @@
     <color name="cardDist3">#ffab40</color>
     <color name="cardDist4">#ff5252</color>
     <color name="divider">#9e9e9e</color>
+    <color name="openSession">#a5d6a7</color>
+    <color name="closedSession">#ff8a80</color>
 </resources>

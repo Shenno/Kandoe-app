@@ -110,7 +110,9 @@ public class SessionFragment extends Fragment implements Callback<SessionResourc
 
     private void updateSession() {
         SharedPreferences prefs = getActivity().getSharedPreferences("Logindetails", Context.MODE_PRIVATE);
-        getKandoeService().getSession(prefs.getString("token", null), this);
+        Bundle bundle = getArguments();
+        int sessionId = bundle.getInt("sessionId", -1);
+        getKandoeService().getSession(prefs.getString("token", null), sessionId, this);
     }
 
     @Override
