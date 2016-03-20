@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +26,13 @@ import static be.kdg.teamf.kandoe_app.application.KandoeApplication.getKandoeSer
 
 
 /**
- * Created by admin on 9/03/2016.
+ * Created by Shenno Willaert on 9/03/2016.
+ */
+
+/**
+ * Loginfragment to log with an existing account
  */
 public class LoginFragment extends Fragment implements Callback<String> {
-
     private EditText etEmail;
     private EditText etPassword;
     private Button butSubmit;

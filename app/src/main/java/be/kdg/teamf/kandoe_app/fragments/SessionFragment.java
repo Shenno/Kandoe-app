@@ -34,10 +34,15 @@ import static be.kdg.teamf.kandoe_app.application.KandoeApplication.getKandoeSer
 
 
 /**
- * Created by admin on 11/03/2016.
+ * Created by Shenno Willaert on 11/03/2016.
+ */
+
+/**
+ * SessionFragment, the session can be played here
+ * We used a scrollable list where the items are swipeable to the right to push a card
+ * Swipe down to refresh the session and check if it is logged in user's turn or not
  */
 public class SessionFragment extends Fragment implements Callback<SessionResource> {
-
     private RecyclerView mRecyclerView;
     private SessionAdapter mAdapter;
     private SwipeRefreshLayout srl;
@@ -50,12 +55,12 @@ public class SessionFragment extends Fragment implements Callback<SessionResourc
         View rootView = inflater.inflate(R.layout.fragment_session, container, false);
         sessionInfo = (TextView) rootView.findViewById(R.id.textViewInfoSession);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
+
         // Layout Managers:
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setVisibility(View.VISIBLE);
 
         // Creating Adapter object
-        //RipAdapter mAdapter = new RipAdapter(getActivity(), new ArrayList<Student>());
         mAdapter = new SessionAdapter(getActivity(), new SessionResource());
 
         // Setting Mode to Single to reveal bottom View for one item in List
@@ -69,8 +74,6 @@ public class SessionFragment extends Fragment implements Callback<SessionResourc
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                Log.e("RecyclerView", "onScrollStateChanged");
-
             }
 
             @Override
@@ -78,12 +81,14 @@ public class SessionFragment extends Fragment implements Callback<SessionResourc
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+
         srl = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
         srl.setColorSchemeColors(R.color.colorPrimary);
-        /*
-        * Sets up a SwipeRefreshLayout.OnRefreshListener that is invoked when the user
- * performs a swipe-to-refresh gesture.
- */
+
+        /**
+          * Sets up a SwipeRefreshLayout.OnRefreshListener that is invoked when the user
+          * performs a swipe-to-refresh gesture.
+          */
         srl.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
@@ -98,6 +103,11 @@ public class SessionFragment extends Fragment implements Callback<SessionResourc
         return rootView;
     }
 
+    /**
+     * Sort cards based on distance to center, 0 = center
+     * @param sessionResource session with cards to sort
+     * @return sorted session and cards
+     */
     private SessionResource sortCards(SessionResource sessionResource) {
         Collections.sort(sessionResource.getCardSessionResources(), new Comparator<CardSessionResource>() {
             @Override
@@ -121,7 +131,6 @@ public class SessionFragment extends Fragment implements Callback<SessionResourc
         sessionResource = sortCards(sessionResource);
         mAdapter.setSession(sessionResource);
         updateSessionInfo(sessionResource.isGameOver(), sessionResource.getCurrentUser());
-        //Toast.makeText(getActivity(), Integer.toString(sessionResource.getCurrentUser()), Toast.LENGTH_LONG).show();
         srl.setRefreshing(false);
     }
 
@@ -141,6 +150,6 @@ public class SessionFragment extends Fragment implements Callback<SessionResourc
 
     @Override
     public void failure(RetrofitError error) {
-        Toast.makeText(getActivity(), "werktniet", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "Some error occurred", Toast.LENGTH_LONG).show();
     }
 }

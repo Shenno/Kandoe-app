@@ -11,7 +11,6 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import be.kdg.teamf.kandoe_app.R;
 import be.kdg.teamf.kandoe_app.resource.CardSessionResource;
@@ -24,7 +23,11 @@ import static be.kdg.teamf.kandoe_app.application.KandoeApplication.getKandoeSer
 
 
 /**
- * Created by admin on 15/03/2016.
+ * Created by Shenno Willaert on 15/03/2016.
+ */
+
+/**
+ * Fragment to update a session when a card is moved
  */
 public class SessionPostFragment extends Fragment implements Callback<SessionResource> {
     @Override
@@ -64,6 +67,6 @@ public class SessionPostFragment extends Fragment implements Callback<SessionRes
 
     @Override
     public void failure(RetrofitError error) {
-
+        Snackbar.make(getView(), "Er is iets foutgelopen!", Snackbar.LENGTH_LONG).show();
     }
 }

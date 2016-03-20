@@ -1,13 +1,11 @@
 package be.kdg.teamf.kandoe_app;
 
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,12 +19,13 @@ import android.widget.Toast;
 import be.kdg.teamf.kandoe_app.fragments.HomeFragment;
 import be.kdg.teamf.kandoe_app.fragments.LoginFragment;
 import be.kdg.teamf.kandoe_app.fragments.RegisterFragment;
-import be.kdg.teamf.kandoe_app.fragments.SessionFragment;
 import be.kdg.teamf.kandoe_app.fragments.SessionsFragment;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
+/**
+ * MainActivity of Kandoe android app
+ * Core activity with a framecontainer where
+ * fragments are going to be inflated to
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public Menu menu;
@@ -75,7 +74,6 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Toast.makeText(this, "Under construction", Toast.LENGTH_LONG).show();
             return true;
@@ -116,12 +114,20 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Function used by fragments inside this activity to switch fragment.
+     * @param fragment fragment to be switched to
+     */
     public void switchContent(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
     }
 
+    /**
+     * Function to pass the activity's actionbar to fragments.
+     * @return actionbar
+     */
     public android.support.v7.app.ActionBar getSupActionBar() {
         return getSupportActionBar();
     }

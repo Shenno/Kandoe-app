@@ -3,19 +3,24 @@ package be.kdg.teamf.kandoe_app.deco;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import be.kdg.teamf.kandoe_app.R;
 
 /**
- * Created by admin on 15/03/2016.
+ * Created by Shenno Willaert on 15/03/2016.
+ */
+
+/**
+ * ItemDivider used to divide RecyclerView in SessionFragment
  */
 public class SimpleItemDividerDecoration extends RecyclerView.ItemDecoration {
     private Drawable mDivider;
 
     public SimpleItemDividerDecoration(Context context) {
-        mDivider = context.getResources().getDrawable(R.drawable.line_divider);
+        mDivider = ContextCompat.getDrawable(context, R.drawable.line_divider);
     }
 
     @Override

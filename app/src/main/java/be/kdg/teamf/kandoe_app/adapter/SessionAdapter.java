@@ -29,11 +29,15 @@ import be.kdg.teamf.kandoe_app.resource.SessionResource;
 
 
 /**
- * Created by admin on 14/03/2016.
+ * Created by Shenno Willaert on 14/03/2016.
  */
 
+/**
+ * Adapter to handle the cards of a session
+ * RecyclerSwipeAdapter is a thirdparty plugin to make swipe left and right
+ * on menuitems possible.
+ */
 public class SessionAdapter extends RecyclerSwipeAdapter<SessionAdapter.SimpleViewHolder> {
-
     private Context mContext;
     private SessionResource session;
 
@@ -58,17 +62,18 @@ public class SessionAdapter extends RecyclerSwipeAdapter<SessionAdapter.SimpleVi
         final List<CardSessionResource> cards = session.getCardSessionResources();
         final CardSessionResource card = cards.get(position);
         viewHolder.cardName.setText(card.getCard());
-        viewHolder.ringColor.setText(card.getDistanceToCenter().toString());
+        viewHolder.ringColor.setText(String.format("%d", card.getDistanceToCenter()));
         Picasso.with(mContext).load(card.getImage()).into(viewHolder.ivCard);
+
         // Conditional formatting colors
         int color = pimpCard(card.getDistanceToCenter());
         viewHolder.ringColor.setBackgroundColor(color);
 
+        // Swipe showmode
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
 
         // Drag From Left
         viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Left, viewHolder.swipeLayout.findViewById(R.id.bottom_wrapper1));
-
 
         // Handling different events when swiping
         viewHolder.swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
@@ -103,7 +108,6 @@ public class SessionAdapter extends RecyclerSwipeAdapter<SessionAdapter.SimpleVi
             }
         });
 
-
         viewHolder.swipeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,17 +116,14 @@ public class SessionAdapter extends RecyclerSwipeAdapter<SessionAdapter.SimpleVi
             }
         });
 
-
         viewHolder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(mContext, Integer.toString(position), Toast.LENGTH_SHORT).show();
+
             }
         });
 
-
-
-        viewHolder.btnLocation.setOnClickListener(new View.OnClickListener() {
+        viewHolder.btnPush.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkConditionsSession() ){
@@ -130,24 +131,18 @@ public class SessionAdapter extends RecyclerSwipeAdapter<SessionAdapter.SimpleVi
                 }
                 else {
                     Snackbar.make(v, "Het is niet jouw beurt!", Snackbar.LENGTH_LONG).show();
-
                 }
-                //  Toast.makeText(v.getContext(), "Clicked on Map " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
         // mItemManger is member in RecyclerSwipeAdapter Class
         mItemManger.bindView(viewHolder.itemView, position);
-
     }
 
     protected boolean checkConditionsSession() {
         SharedPreferences prefs = mContext.getSharedPreferences("Logindetails", Context.MODE_PRIVATE);
         int loggedInUserId = prefs.getInt("id", -1);
-        if(session.getCurrentUser().equals(loggedInUserId) && !session.isGameOver()) {
-            return true;
-        }
-        return false;
+        return session.getCurrentUser().equals(loggedInUserId) && !session.isGameOver();
     }
 
     private int pimpCard(Integer distanceToCenter) {
@@ -190,14 +185,13 @@ public class SessionAdapter extends RecyclerSwipeAdapter<SessionAdapter.SimpleVi
         return R.id.swipe;
     }
 
-
     //  ViewHolder Class
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
         SwipeLayout swipeLayout;
         ImageView ivCard;
         TextView cardName;
-        ImageButton btnLocation;
+        ImageButton btnPush;
         RelativeLayout row;
         TextView ringColor;
 
@@ -206,7 +200,7 @@ public class SessionAdapter extends RecyclerSwipeAdapter<SessionAdapter.SimpleVi
             swipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
             ivCard = (ImageView) itemView.findViewById(R.id.cardImage);
             cardName = (TextView) itemView.findViewById(R.id.cardName);
-            btnLocation = (ImageButton) itemView.findViewById(R.id.btnLocation);
+            btnPush = (ImageButton) itemView.findViewById(R.id.btnPush);
             row = (RelativeLayout) itemView.findViewById(R.id.rowitem);
             ringColor = (TextView) itemView.findViewById(R.id.colorRing);
         }

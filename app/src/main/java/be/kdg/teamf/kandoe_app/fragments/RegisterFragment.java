@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import be.kdg.teamf.kandoe_app.MainActivity;
 import be.kdg.teamf.kandoe_app.R;
@@ -26,7 +25,11 @@ import static be.kdg.teamf.kandoe_app.application.KandoeApplication.getKandoeSer
 
 
 /**
- * Created by admin on 9/03/2016.
+ * Created by Shenno Willaert on 9/03/2016.
+ */
+
+/**
+ * RegisterFragment to register a new account
  */
 public class RegisterFragment extends Fragment implements Callback<String> {
     private EditText etFirstname;

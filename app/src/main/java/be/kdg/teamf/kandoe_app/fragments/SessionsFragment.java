@@ -20,7 +20,6 @@ import java.util.List;
 import be.kdg.teamf.kandoe_app.MainActivity;
 import be.kdg.teamf.kandoe_app.R;
 import be.kdg.teamf.kandoe_app.adapter.SessionsAdapter;
-import be.kdg.teamf.kandoe_app.resource.CardSessionResource;
 import be.kdg.teamf.kandoe_app.resource.SessionResource;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -29,10 +28,15 @@ import retrofit.client.Response;
 import static be.kdg.teamf.kandoe_app.application.KandoeApplication.getKandoeService;
 
 /**
- * Created by admin on 18/03/2016.
+ * Created by Shenno Willaert on 18/03/2016.
+ */
+
+/**
+ * Fragment where a list of sessions is shown belonging to the logged in user.
+ * Conditional formatting included
+ * RecyclerView used to show sessions in CardView
  */
 public class SessionsFragment extends Fragment implements Callback<List<SessionResource>> {
-
     private RecyclerView mRecyclerView;
     private SessionsAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -81,7 +85,12 @@ public class SessionsFragment extends Fragment implements Callback<List<SessionR
         getKandoeService().getSessions(prefs.getString("token", null), this);
     }
 
-    private List<SessionResource> sortCards(List<SessionResource> sessionResource) {
+    /**
+     * Function to sort sessions
+     * @param sessionResource
+     * @return
+     */
+    private List<SessionResource> sortSessions(List<SessionResource> sessionResource) {
         Collections.sort(sessionResource, new Comparator<SessionResource>() {
             @Override
             public int compare(SessionResource lhs, SessionResource rhs) {
@@ -96,15 +105,13 @@ public class SessionsFragment extends Fragment implements Callback<List<SessionR
 
     @Override
     public void success(List<SessionResource> sessionResources, Response response) {
-        sessionResources = sortCards(sessionResources);
+        sessionResources = sortSessions(sessionResources);
         ArrayList<SessionResource> resources = new ArrayList<>(sessionResources);
         mAdapter.setDataset(resources);
-        Toast.makeText(getActivity(), "werkt", Toast.LENGTH_LONG).show();
-
     }
 
     @Override
     public void failure(RetrofitError error) {
-        Toast.makeText(getActivity(), "werktniet", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "An error occurred!", Toast.LENGTH_LONG).show();
     }
 }

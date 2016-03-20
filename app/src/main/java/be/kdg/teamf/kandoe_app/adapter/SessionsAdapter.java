@@ -17,7 +17,13 @@ import be.kdg.teamf.kandoe_app.R;
 import be.kdg.teamf.kandoe_app.resource.SessionResource;
 
 /**
- * Created by admin on 18/03/2016.
+ * Created by Shenno Willaert on 18/03/2016.
+ */
+
+/**
+ * Adapter to handle sessions as cards inside a RecyclerView
+ * Some formatting included
+ * Clicklistener implementation to attach an onClick
  */
 public class SessionsAdapter extends RecyclerView
         .Adapter<SessionsAdapter
@@ -109,6 +115,6 @@ public class SessionsAdapter extends RecyclerView
     }
 
     public interface MyClickListener {
-        public void onItemClick(int position, View v);
+        void onItemClick(int position, View v);
     }
 }

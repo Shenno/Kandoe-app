@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import be.kdg.teamf.kandoe_app.MainActivity;
 import be.kdg.teamf.kandoe_app.R;
@@ -22,7 +21,13 @@ import static be.kdg.teamf.kandoe_app.application.KandoeApplication.getKandoeSer
 
 
 /**
- * Created by admin on 10/03/2016.
+ * Created by Shenno Willaert on 10/03/2016.
+ */
+
+/**
+ * Homefragment with simple frontpage view
+ * In this fragment the logged in user's data is loaded into the
+ * navigation header section.
  */
 public class HomeFragment extends Fragment implements Callback<UserResource> {
     private NavigationView navigationView;
@@ -42,6 +47,10 @@ public class HomeFragment extends Fragment implements Callback<UserResource> {
         return rootView;
     }
 
+    /**
+     * Function to update navigationview based on the fact
+     * a user is logged in or not.
+     */
     private void checkLoggedInStatus(){
         SharedPreferences prefs = getActivity().getSharedPreferences("Logindetails", Context.MODE_PRIVATE);
         if(prefs.getString("token", null) == null) {
@@ -52,7 +61,6 @@ public class HomeFragment extends Fragment implements Callback<UserResource> {
             navigationView.getMenu().findItem(R.id.nav_play).setEnabled(false);
             tvEmail.setText("Gelieve in te loggen/registeren");
             tvName.setText("Niet ingelogd");
-
         }
         else {
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
@@ -68,7 +76,6 @@ public class HomeFragment extends Fragment implements Callback<UserResource> {
         SharedPreferences.Editor editor = getActivity().getSharedPreferences("Logindetails", Context.MODE_PRIVATE).edit();
         editor.putInt("id", id);
         editor.apply();
-        Toast.makeText(getActivity(), Integer.toString(id), Toast.LENGTH_LONG).show();
     }
 
     @Override

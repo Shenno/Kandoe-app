@@ -1,5 +1,6 @@
 package be.kdg.teamf.kandoe_app;
 
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -12,6 +13,7 @@ import java.util.Random;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.swipeDown;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.DrawerActions.close;
@@ -23,14 +25,20 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.IsNot.not;
 
 /**
- * Created by admin on 19/03/2016.
+ * Created by Shenno Willaert on 19/03/2016.
  */
+
+/**
+ * Make sure you are logged out before running these tests
+ */
+
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class EspressoTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule(MainActivity.class);
+
 
     @Test
     public void homeFragmentDisplayed() {
@@ -86,7 +94,10 @@ public class EspressoTest {
         onView(withId(R.id.drawer_layout)).perform(open());
         onView(withText("Speel sessie")).check(matches(isDisplayed())).perform(click());
         onView(withId(R.id.my_recycler_view))
-                .check(matches(hasDescendant(withText("Seeded sessie"))));
+                .perform(RecyclerViewActions.actionOnItem(hasDescendant(withText("Sessie")), click()));
+        // Swipe refresh test
+        onView(withId(R.id.swipeRefreshLayout)).check(matches(isDisplayed()))
+                .perform(swipeDown());
 
         onView(withId(R.id.drawer_layout)).perform(open());
         onView(withText("Log uit")).check(matches(isDisplayed())).perform(click());
