@@ -57,6 +57,8 @@ public class SessionsFragment extends Fragment implements Callback<List<SessionR
                 fragmentJump(sessionResource.getId());
             }
         });
+        // Change title
+        ((MainActivity) getActivity()).getSupActionBar().setTitle("Overzicht sessies");
         return rootView;
     }
 

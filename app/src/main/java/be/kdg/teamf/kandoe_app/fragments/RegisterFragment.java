@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import be.kdg.teamf.kandoe_app.MainActivity;
 import be.kdg.teamf.kandoe_app.R;
 import be.kdg.teamf.kandoe_app.resource.UserResourceRegister;
 import retrofit.Callback;
@@ -42,6 +43,8 @@ public class RegisterFragment extends Fragment implements Callback<String> {
         View rootView = inflater.inflate(R.layout.fragment_register, container, false);
         coupleWidgets(rootView);
         initListeners();
+        // Change title
+        ((MainActivity) getActivity()).getSupActionBar().setTitle("Registreer");
         return rootView;
     }
 
@@ -65,7 +68,11 @@ public class RegisterFragment extends Fragment implements Callback<String> {
     }
 
     private void register() {
-        //// TODO: 11/03/2016 dubbelpwd check
+        if (!etPwd.getText().toString().equals(etPwdConfirm.getText().toString())) {
+            Snackbar.make(getView(), "Paswoorden komen niet overeen!", Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
         UserResourceRegister userResourceRegister = new UserResourceRegister
                 (   etEmail.getText().toString(),
                     etPwd.getText().toString(),

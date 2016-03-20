@@ -72,9 +72,9 @@ public class SessionsAdapter extends RecyclerView
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
         holder.sessionName.setText(mDataset.get(position).getNameSession());
-        holder.players.setText("Spelers: " + Integer.toString(mDataset.get(position).getAmountOfUsers()));
-        holder.circles.setText("Cirkels: " + Integer.toString(mDataset.get(position).getAmountOfCircles()));
-        // TODO: 19/03/2016 string.format
+        holder.players.setText(String.format("Spelers: %d", mDataset.get(position).getAmountOfUsers()));
+        holder.circles.setText(String.format("Cirkels: %d", mDataset.get(position).getAmountOfCircles()));
+
         // Check if logged in user is the user on turn in the session
         SharedPreferences prefs = mContext.getSharedPreferences("Logindetails", Context.MODE_PRIVATE);
         int loggedInUserId = prefs.getInt("id", -1);

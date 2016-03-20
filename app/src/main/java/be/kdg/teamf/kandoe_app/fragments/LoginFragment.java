@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import be.kdg.teamf.kandoe_app.MainActivity;
 import be.kdg.teamf.kandoe_app.R;
 import be.kdg.teamf.kandoe_app.resource.UserResourcePost;
 import retrofit.Callback;
@@ -42,6 +43,8 @@ public class LoginFragment extends Fragment implements Callback<String> {
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
         coupleWidgets(rootView);
         initListeners();
+        // Change title
+        ((MainActivity) getActivity()).getSupActionBar().setTitle("Log in");
         return rootView;
     }
 

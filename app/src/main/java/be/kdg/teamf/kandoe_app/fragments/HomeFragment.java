@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import be.kdg.teamf.kandoe_app.MainActivity;
 import be.kdg.teamf.kandoe_app.R;
 import be.kdg.teamf.kandoe_app.resource.UserResource;
 import retrofit.Callback;
@@ -36,6 +37,8 @@ public class HomeFragment extends Fragment implements Callback<UserResource> {
         tvEmail = (TextView) getActivity().findViewById(R.id.textView_email);
         tvName = (TextView) getActivity().findViewById(R.id.textView_username);
         checkLoggedInStatus();
+        // Change title
+        ((MainActivity) getActivity()).getSupActionBar().setTitle("Home");
         return rootView;
     }
 
